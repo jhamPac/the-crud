@@ -15,5 +15,19 @@
   "bugs": {
     "url": "https://github.com/jhamPac/the-crud/issues"
   },
-  "homepage": "https://github.com/jhamPac/the-crud#readme"
+  "homepage": "https://github.com/jhamPac/the-crud#readme",
+  "devDependencies": {
+    "autoprefixer": "^9.4.3",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "import-glob-loader": "^1.1.0",
+    "materialize-css": "^1.0.0",
+    "node-sass": "^4.11.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
 }
