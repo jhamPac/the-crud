@@ -1,0 +1,19 @@
+{
+  "name": "the-crud",
+  "version": "0.0.0",
+  "description": "Basic crud with GraphQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhamPac/the-crud.git"
+  },
+  "author": "jhampac",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jhamPac/the-crud/issues"
+  },
+  "homepage": "https://github.com/jhamPac/the-crud#readme"
+}
