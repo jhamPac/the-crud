@@ -4,6 +4,9 @@
   "description": "Basic crud with GraphQL",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf ./dist/*",
+    "build": "npm run clean && parcel build ./src/index.html",
+    "start": "parcel ./src/index.html --port 9500",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,6 +31,7 @@
     "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "rimraf": "^2.6.2"
   }
 }
