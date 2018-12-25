@@ -9,18 +9,31 @@ const schemaPrinter       = require('graphql/utilities/schemaPrinter')
 
 // W.eb A.pplication F.ramework
 const WAF = express()
+WAF.options('*', cors())
 
-WAF.use(cors({ origin: true }))
+WAF.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
+  return next()
+})
 
-WAF.get('*', (req, res) => {
-  console.log(req)
-  response.send('Merry Christmas and a happy New Year!')
+WAF.get('/celebrate', (req, res) => {
+  res.send('Yaay Its Christmas!')
+})
+
+WAF.get('/home', (req, res) => {
+  res.set('Content-Type', 'text/plain')
+  res.send('Keep the change you stinkin animal!')
+})
+
+WAF.use('/', (req, res) => {
+  res.set('Content-Type', 'text/plain')
+  res.send('Merry Christmas and a Happy New Year')
 })
 
 export const api = functions.https.onRequest((req, res) => {
-  if (req.path) {
-    req.url = `/${req.url}`
-  }
+	if (!req.path) {
+		req.url = `/${req.url}`
+	}
 
-  return WAF(req, res)
+	return WAF(req, res)
 })
