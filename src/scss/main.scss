@@ -1,0 +1,15 @@
+@import "~materialize-css/sass/materialize";
+@import './mixins/breakpoint';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: yellow;
+  font-size: 16px;
+
+  #mount-point {
+
+  }
+}
