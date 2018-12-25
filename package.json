@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf ./dist/*",
-    "build": "npm run clean && parcel build ./src/index.html",
+    "bablify": "parcel build ./functions/source.js --out-dir ./functions --out-file index.js --target node",
+    "build": "npm run clean && npm run bablify && parcel build ./src/index.html",
     "start": "parcel ./src/index.html --port 9500",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,6 +27,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "cssnano": "^4.1.8",
     "import-glob-loader": "^1.1.0",
     "materialize-css": "^1.0.0",
     "node-sass": "^4.11.0",
