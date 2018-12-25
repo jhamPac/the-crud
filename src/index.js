@@ -17,7 +17,7 @@ function render(Component) {
 }
 
 if (document.readyState !== 'loading') {
-  render(Application);
+  render(Application)
 } else {
   document.addEventListener('DOMContentLoaded', render.bind(null, Application))
 }

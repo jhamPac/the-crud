@@ -65,3 +65,6 @@ dist
 
 #firebase
 .firebase
+
+# parcel
+.cache
