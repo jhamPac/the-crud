@@ -1,6 +1,6 @@
 {
   "name": "the-crud",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Basic crud with GraphQL",
   "main": "index.js",
   "scripts": {
