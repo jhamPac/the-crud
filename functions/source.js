@@ -4,27 +4,33 @@ const express   = require('express')
 const cors      = require('cors')
 const os        = require('os')
 
-// FireStore
-const serviceKeys = require(`${os.homedir()}/.firebase/keyfile.json`)
-const adminCreds  = {
-  credential: admin.credential.cert(serviceKeys),
-  databaseURL: "https://blackjynxy.firebaseio.com"
+// FireBase setup
+function getCredentials() {
+  const serviceKeys = require(`${os.homedir()}/.firebase/keyfile.json`)
+  const adminCreds  = {
+    credential: admin.credential.cert(serviceKeys),
+    databaseURL: "https://blackjynxy.firebaseio.com"
+  }
+
+  return adminCreds
 }
 
-const adminConfig = (process.env.LOCAL_TEST) ? adminCreds : functions.config().firebase
+const fbConfig = (process.env.LOCAL_TEST) ? getCredentials() : functions.config().firebase
+admin.initializeApp(fbConfig)
 
-admin.initializeApp(adminConfig)
+// FireStore reference
 const DB = admin.firestore()
 
 // GraphQL deps
 const apolloServerExpress = require('apollo-server-express')
 const schemaPrinter       = require('graphql/utilities/schemaPrinter')
-// const schema              = require('./graphql/schema')
+// const schema           = require('./graphql/schema')
 
 // W.eb A.pplication F.ramework
 const WAF = express()
 WAF.options('*', cors())
 
+// Routes
 WAF.use((req, res, next) => {
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
   return next()
@@ -49,6 +55,7 @@ WAF.use('/', (req, res) => {
   res.send('Welcome to data fetcher 3000!')
 })
 
+// start local server if testing locally
 if (process.env.LOCAL_TEST) {
   WAF.listen(3000, () => console.log(`Example app listening on port 3000`))
 }
