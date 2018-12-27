@@ -30,30 +30,23 @@ WAF.use((req, res, next) => {
   return next()
 })
 
-WAF.get('/celebrate', (req, res) => {
+WAF.get('/provisions/food', async (req, res) => {
   const foods = DB.collection('provisions').doc('food')
-  const getDoc = foods.get()
-  .then(doc => {
-    if (!doc.exists) {
-      console.log('No such document!');
-    } else {
-      console.log('Document data:', doc.data());
-    }
+  const getDoc = await foods.get().catch(err => {
+    res.status(500)
+    res.render('error', {
+     message: err.message,
+     error: err
+    })
   })
-  .catch(err => {
-    console.log('Error getting document', err);
-  });
-  res.send('Yaaaaay it was Christmas!')
-})
 
-WAF.get('/home', (req, res) => {
-  res.set('Content-Type', 'text/plain')
-  res.send('Keep the change you stinkin animal!')
+  res.setHeader('Content-Type', 'application/json')
+  res.json(getDoc.data())
 })
 
 WAF.use('/', (req, res) => {
   res.set('Content-Type', 'text/plain')
-  res.send('Merry Christmas and a Happy New Year')
+  res.send('Welcome to data fetcher 3000!')
 })
 
 if (process.env.LOCAL_TEST) {
