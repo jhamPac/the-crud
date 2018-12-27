@@ -24,7 +24,7 @@ const DB = admin.firestore()
 // GraphQL deps
 const apolloServerExpress = require('apollo-server-express')
 const schemaPrinter       = require('graphql/utilities/schemaPrinter')
-// const schema           = require('./graphql/schema')
+const schema              = require('./graphql/schema')
 
 // W.eb A.pplication F.ramework
 const WAF = express()
@@ -35,6 +35,24 @@ WAF.use((req, res, next) => {
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
   return next()
 })
+
+// /api/graphql
+ WAF.use(
+   "/graphql",
+   apolloServerExpress.graphqlExpress({ schema, context: {} })
+ )
+
+ // /api/graphiql
+ WAF.use(
+   "/graphiql",
+   apolloServerExpress.graphiqlExpress({ endpointURL: "/api/graphql" })
+ )
+
+ // /api/schema
+ WAF.use("/schema", (req, res) => {
+   res.set("Content-Type", "text/plain")
+   res.send(schemaPrinter(schema))
+ })
 
 WAF.get('/provisions/food', async (req, res) => {
   const foods = DB.collection('provisions').doc('food')
