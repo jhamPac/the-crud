@@ -1,5 +1,4 @@
-import { makeExecutableSchema } from "graphql-tools"
-import { gql } from 'apollo-server-express'
+import { gql } from 'apollo-server-cloud-functions'
 
 import resolvers from "./resolvers"
 
@@ -30,7 +29,7 @@ const schema = gql`
   }
 `
 
-export default makeExecutableSchema({
+export default {
   typeDefs: schema,
   resolvers
-})
+}
