@@ -2,9 +2,18 @@ const admin     = require('firebase-admin')
 const functions = require('firebase-functions')
 const express   = require('express')
 const cors      = require('cors')
+const os        = require('os')
 
 // FireStore
-admin.initializeApp(functions.config().firebase)
+const serviceKeys = require(`${os.homedir()}/.firebase/keyfile.json`)
+const adminCreds  = {
+  credential: admin.credential.cert(serviceKeys),
+  databaseURL: "https://blackjynxy.firebaseio.com"
+}
+
+const adminConfig = (process.env.LOCAL_TEST) ? adminCreds : functions.config().firebase
+
+admin.initializeApp(adminConfig)
 const DB = admin.firestore()
 
 // GraphQL deps
