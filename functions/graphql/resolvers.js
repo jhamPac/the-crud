@@ -2,61 +2,43 @@ import { admin } from '../firebaseSingleton'
 
 const fireStore = admin.firestore()
 
-WAF.get('/provisions/food', async (req, res) => {
-  const foods = DB.collection('provisions').doc('food')
+async function getFoodInfo() {
+  const foods = fireStore.collection('provisions').doc('food')
   const getDoc = await foods.get().catch(err => {
-    res.status(500)
-    res.render('error', {
-     message: err.message,
-     error: err
-    })
+    throw new Error(err)
   })
 
-  res.setHeader('Content-Type', 'application/json')
-  res.json(getDoc.data())
-})
+  const foodObj = getDoc.data()
 
-const authors = [
-  { id: 1, firstName: "Tom", lastName: "Coleman" },
-  { id: 2, firstName: "Sashko", lastName: "Stubailo" }
-]
+  return Object.keys(foodObj).reduce((acc, curr) => {
+    let food = {
+      name: curr,
+      inStock: foodObj[curr]['inStock']
+    }
 
-const posts = [
-  { id: 1, authorId: 1, title: "Introduction to GraphQL", votes: 2 },
-  { id: 2, authorId: 2, title: "GraphQL Rocks", votes: 3 },
-  { id: 3, authorId: 2, title: "Advanced GraphQL", votes: 1 }
-]
+    return acc.concat(food)
+
+  }, [])
+}
+
 
 const resolveFunctions = {
   Query: {
-    posts() {
-      return posts
-    },
-    author(_, { id }) {
-      return authors.find(author => author.id === id)
-    }
-  },
-  Mutation: {
-    upvotePost(_, { postId }) {
-      const post = posts.find(post => post.id === postId)
-      if (!post) {
-        throw new Error(`Couldn't find post with id ${postId}`)
-      }
-      post.votes += 1
-      // pubsub.publish('postUpvoted', post);
-      return post
-    }
-  },
-  Author: {
-    posts(author) {
-      return posts.filter(post => post.authorId === author.id)
-    }
-  },
-  Post: {
-    author(post) {
-      return authors.find(author => author.id === post.authorId)
+    foodSupply() {
+      return getFoodInfo()
     }
   }
+  // Mutation: {
+  //   upvotePost(_, { postId }) {
+  //     const post = posts.find(post => post.id === postId)
+  //     if (!post) {
+  //       throw new Error(`Couldn't find post with id ${postId}`)
+  //     }
+  //     post.votes += 1
+  //     // pubsub.publish('postUpvoted', post);
+  //     return post
+  //   }
+  // }
 }
 
 export default resolveFunctions
