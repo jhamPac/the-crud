@@ -14,10 +14,10 @@ function getCredentials() {
 
 admin.initializeApp(getCredentials())
 const fireStore = admin.firestore()
+const FOOD_REF   = fireStore.collection('provisions').doc('food')
 
 async function foodSupply() {
-  const foodRef = fireStore.collection('provisions').doc('food')
-  const foodDoc = await foodRef.get().catch(err => {
+  const foodDoc = await FOOD_REF.get().catch(err => {
     throw new Error(err)
   })
 
@@ -34,4 +34,10 @@ async function foodSupply() {
   return Object.keys(foodInfo).reduce(createFoodItem(foodInfo), [])
 }
 
-foodSupply()
+async function addFoodToSupply() {
+  const foodItem = await FOOD_REF.update({
+    oil: {
+      inStock: 44
+    }
+  });
+}

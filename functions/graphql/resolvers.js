@@ -1,10 +1,10 @@
 import { admin } from '../firebaseSingleton'
 
 const fireStore = admin.firestore()
+const FOOD_REF  = fireStore.collection('provisions').doc('food')
 
 async function foodSupply() {
-  const foodRef = fireStore.collection('provisions').doc('food')
-  const foodDoc = await foodRef.get().catch(err => {
+  const foodDoc = await FOOD_REF.get().catch(err => {
     throw new Error(err)
   })
 
@@ -21,22 +21,28 @@ async function foodSupply() {
   return Object.keys(foodInfo).reduce(createFoodItem(foodInfo), [])
 }
 
+async function addFoodToSupply(root, { name, inStock }) {
+  const payload = {
+    [name]: {
+      inStock
+    }
+  }
+
+  await FOOD_REF.update(payload)
+  payload.name = name
+
+  return payload
+}
+
 
 const resolveFunctions = {
   Query: {
     foodSupply
+  },
+
+  Mutation: {
+    addFoodToSupply
   }
-  // Mutation: {
-  //   upvotePost(_, { postId }) {
-  //     const post = posts.find(post => post.id === postId)
-  //     if (!post) {
-  //       throw new Error(`Couldn't find post with id ${postId}`)
-  //     }
-  //     post.votes += 1
-  //     // pubsub.publish('postUpvoted', post);
-  //     return post
-  //   }
-  // }
 }
 
 export default resolveFunctions
