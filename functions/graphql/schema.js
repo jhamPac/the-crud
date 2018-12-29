@@ -11,7 +11,7 @@ const typeDefs = gql`
 
   # the schema allows the following query:
   type Query {
-    foodSupply: [Food]
+    getFoodSupply: [Food]
   }
 
   # this schema allows the following mutation:

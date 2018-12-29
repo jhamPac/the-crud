@@ -3,7 +3,7 @@ import { admin } from '../firebaseSingleton'
 const fireStore = admin.firestore()
 const FOOD_REF  = fireStore.collection('provisions').doc('food')
 
-async function foodSupply() {
+async function getFoodSupply() {
   const foodDoc = await FOOD_REF.get().catch(err => {
     throw new Error(err)
   })
@@ -37,7 +37,7 @@ async function addFoodToSupply(root, { name, inStock }) {
 
 const resolveFunctions = {
   Query: {
-    foodSupply
+    getFoodSupply
   },
 
   Mutation: {
