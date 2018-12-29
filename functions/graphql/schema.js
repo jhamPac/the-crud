@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-cloud-functions'
 
 import resolvers from "./resolvers"
 
-const schema = gql`
+const typeDefs = gql`
   type Author {
     id: Int! # the ! means that every author object _must_ have an id
     firstName: String
@@ -30,6 +30,6 @@ const schema = gql`
 `
 
 export default {
-  typeDefs: schema,
+  typeDefs,
   resolvers
 }

@@ -10,7 +10,9 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "build": "parcel build ./source.js --out-dir . --out-file ./index.js --target node"
+    "build": "parcel build ./source.js --out-dir . --out-file ./index.js --target node",
+    "build:test": "parcel build ./firestoreTest.js --out-dir . --out-file ./fsTest.js --target node",
+    "test": "node fsTest.js"
   },
   "dependencies": {
     "apollo-server-cloud-functions": "^2.3.1",

@@ -2,7 +2,19 @@ import { admin } from '../firebaseSingleton'
 
 const fireStore = admin.firestore()
 
-console.log(fireStore)
+WAF.get('/provisions/food', async (req, res) => {
+  const foods = DB.collection('provisions').doc('food')
+  const getDoc = await foods.get().catch(err => {
+    res.status(500)
+    res.render('error', {
+     message: err.message,
+     error: err
+    })
+  })
+
+  res.setHeader('Content-Type', 'application/json')
+  res.json(getDoc.data())
+})
 
 const authors = [
   { id: 1, firstName: "Tom", lastName: "Coleman" },
