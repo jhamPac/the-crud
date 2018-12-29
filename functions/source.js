@@ -1,5 +1,4 @@
-const admin     = require('firebase-admin')
-const functions = require('firebase-functions')
+import { functions } from './firebaseSingleton'
 
 // GraphQL
 import { ApolloServer }   from 'apollo-server-cloud-functions'
@@ -9,9 +8,6 @@ const gqlServer = new ApolloServer({
   ...schema,
   playground: true
 })
-
-// FireBase setup
-admin.initializeApp(functions.config().firebase)
 
 // export Firebase function handler
 export const api = functions.https.onRequest(gqlServer.createHandler({

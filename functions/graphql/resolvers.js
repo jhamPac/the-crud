@@ -1,3 +1,9 @@
+import { admin } from '../firebaseSingleton'
+
+const fireStore = admin.firestore()
+
+console.log(fireStore)
+
 const authors = [
   { id: 1, firstName: "Tom", lastName: "Coleman" },
   { id: 2, firstName: "Sashko", lastName: "Stubailo" }
