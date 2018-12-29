@@ -2,13 +2,13 @@ import { admin } from '../firebaseSingleton'
 
 const fireStore = admin.firestore()
 
-async function getFoodInfo() {
+async function foodSupply() {
   const foods = fireStore.collection('provisions').doc('food')
   const getDoc = await foods.get().catch(err => {
     throw new Error(err)
   })
 
-  const foodObj = getDoc.data()
+  const foodObj = await getDoc.data()
 
   return Object.keys(foodObj).reduce((acc, curr) => {
     let food = {
@@ -24,9 +24,7 @@ async function getFoodInfo() {
 
 const resolveFunctions = {
   Query: {
-    foodSupply() {
-      return getFoodInfo()
-    }
+    foodSupply
   }
   // Mutation: {
   //   upvotePost(_, { postId }) {
