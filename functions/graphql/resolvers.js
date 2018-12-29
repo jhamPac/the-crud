@@ -3,22 +3,22 @@ import { admin } from '../firebaseSingleton'
 const fireStore = admin.firestore()
 
 async function foodSupply() {
-  const foods = fireStore.collection('provisions').doc('food')
-  const getDoc = await foods.get().catch(err => {
+  const foodRef = fireStore.collection('provisions').doc('food')
+  const foodDoc = await foodRef.get().catch(err => {
     throw new Error(err)
   })
 
-  const foodObj = await getDoc.data()
-
-  return Object.keys(foodObj).reduce((acc, curr) => {
-    let food = {
-      name: curr,
-      inStock: foodObj[curr]['inStock']
+  const foodInfo       = foodDoc.data()
+  const createFoodItem = info => (acc, key, index) => {
+    let foodItem = {
+      name: key,
+      inStock: info[key]['inStock']
     }
 
-    return acc.concat(food)
+    return acc.concat(foodItem)
+  }
 
-  }, [])
+  return Object.keys(foodInfo).reduce(createFoodItem(foodInfo), [])
 }
 
 
