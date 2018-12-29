@@ -65,6 +65,8 @@ dist
 
 #firebase
 .firebase
+fsTest.js
+fsTest.map
 
 # parcel
 .cache
