@@ -5,7 +5,7 @@ import resolvers from "./resolvers"
 const typeDefs = gql`
   type Food {
     id: ID!
-    name: String
+    label: String
     inStock: Int
   }
 

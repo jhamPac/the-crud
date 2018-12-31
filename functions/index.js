@@ -1,12 +1,12 @@
 parcelRequire=function(e,r,n,t){var i="function"==typeof parcelRequire&&parcelRequire,o="function"==typeof require&&require;function u(n,t){if(!r[n]){if(!e[n]){var f="function"==typeof parcelRequire&&parcelRequire;if(!t&&f)return f(n,!0);if(i)return i(n,!0);if(o&&"string"==typeof n)return o(n);var c=new Error("Cannot find module '"+n+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[n][1][r]||r},p.cache={};var l=r[n]=new u.Module(n);e[n][0].call(l.exports,p,l,l.exports,this)}return r[n].exports;function p(e){return u(p.resolve(e))}}u.isParcelRequire=!0,u.Module=function(e){this.id=e,this.bundle=u,this.exports={}},u.modules=e,u.cache=r,u.parent=i,u.register=function(r,n){e[r]=[function(e,r){r.exports=n},{}]};for(var f=0;f<n.length;f++)u(n[f]);if(n.length){var c=u(n[n.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=c:"function"==typeof define&&define.amd?define(function(){return c}):t&&(this[t]=c)}return u}({"lZRP":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.functions=exports.admin=void 0;const e=require("firebase-admin");exports.admin=e;const i=require("firebase-functions");exports.functions=i,e.initializeApp(i.config().firebase);
 },{}],"c2nQ":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var t=require("../firebaseSingleton");let n=(()=>{var t=r(function*(){const t=(yield i.get().catch(function(t){throw new Error(t)})).data();return Object.keys(t).reduce((n=t,function(t,e,r){let o={name:e,inStock:n[e].inStock};return t.concat(o)}),[]);var n});return function(){return t.apply(this,arguments)}})(),e=(()=>{var t=r(function*(t,{name:n,inStock:e}){const r={[n]:{inStock:e}};return yield i.update(r),r.name=n,r});return function(n,e){return t.apply(this,arguments)}})();function r(t){return function(){var n=t.apply(this,arguments);return new Promise(function(t,e){return function r(o,i){try{var u=n[o](i),c=u.value}catch(a){return void e(a)}if(!u.done)return Promise.resolve(c).then(function(t){r("next",t)},function(t){r("throw",t)});t(c)}("next")})}}const o=t.admin.firestore(),i=o.collection("provisions").doc("food"),u={Query:{getFoodSupply:n},Mutation:{addFoodToSupply:e}};var c=u;exports.default=c;
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var t=require("../firebaseSingleton");let e=(()=>{var t=r(function*(){const t=(yield u.get().catch(function(t){throw new Error(t)})).data();return Object.keys(t).reduce((e=t,function(t,n,r){return t.concat(e[n])}),[]);var e});return function(){return t.apply(this,arguments)}})(),n=(()=>{var t=r(function*(t,{name:e,inStock:n}){const r={[e]:{inStock:n}};return yield u.update(r),r.name=e,r});return function(e,n){return t.apply(this,arguments)}})();function r(t){return function(){var e=t.apply(this,arguments);return new Promise(function(t,n){return function r(o,u){try{var i=e[o](u),c=i.value}catch(a){return void n(a)}if(!i.done)return Promise.resolve(c).then(function(t){r("next",t)},function(t){r("throw",t)});t(c)}("next")})}}const o=t.admin.firestore(),u=o.collection("provisions").doc("food"),i={Query:{getFoodSupply:e},Mutation:{addFoodToSupply:n}};var c=i;exports.default=c;
 },{"../firebaseSingleton":"lZRP"}],"dmRD":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var e=require("apollo-server-cloud-functions"),o=t(require("./resolvers"));function t(e){return e&&e.__esModule?e:{default:e}}const r=e.gql`
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var e=require("apollo-server-cloud-functions"),o=t(require("./resolvers"));function t(e){return e&&e.__esModule?e:{default:e}}const l=e.gql`
   type Food {
     id: ID!
-    name: String
+    label: String
     inStock: Int
   }
 
@@ -19,7 +19,7 @@ parcelRequire=function(e,r,n,t){var i="function"==typeof parcelRequire&&parcelRe
   type Mutation {
     addFoodToSupply(name: String!, inStock: Int!): Food
   }
-`;var l={typeDefs:r,resolvers:o.default};exports.default=l;
+`;var r={typeDefs:l,resolvers:o.default};exports.default=r;
 },{"./resolvers":"c2nQ"}],"cUx7":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.api=void 0;var e=require("./firebaseSingleton"),r=require("apollo-server-cloud-functions"),o=n(require("./graphql/schema")),t=Object.assign||function(e){for(var r=1;r<arguments.length;r++){var o=arguments[r];for(var t in o)Object.prototype.hasOwnProperty.call(o,t)&&(e[t]=o[t])}return e};function n(e){return e&&e.__esModule?e:{default:e}}const a=new r.ApolloServer(t({},o.default,{playground:!0})),s=e.functions.https.onRequest(a.createHandler({cors:{origin:"*"}}));exports.api=s;
 },{"./firebaseSingleton":"lZRP","./graphql/schema":"dmRD"}]},{},["cUx7"], null)
