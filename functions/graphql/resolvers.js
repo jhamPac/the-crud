@@ -10,12 +10,7 @@ async function getFoodSupply() {
 
   const foodInfo       = foodDoc.data()
   const createFoodItem = info => (acc, key, index) => {
-    let foodItem = {
-      name: key,
-      inStock: info[key]['inStock']
-    }
-
-    return acc.concat(foodItem)
+    return acc.concat(info[key])
   }
 
   return Object.keys(foodInfo).reduce(createFoodItem(foodInfo), [])
