@@ -16,7 +16,7 @@ const typeDefs = gql`
 
   # this schema allows the following mutation:
   type Mutation {
-    addFoodToSupply(name: String!, inStock: Int!): Food
+    addFoodToSupply(label: String!, inStock: Int!): Food
   }
 `
 

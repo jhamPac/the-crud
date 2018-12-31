@@ -16,17 +16,17 @@ async function getFoodSupply() {
   return Object.keys(foodInfo).reduce(createFoodItem(foodInfo), [])
 }
 
-async function addFoodToSupply(root, { name, inStock }) {
+async function addFoodToSupply(root, { label, inStock }) {
   const payload = {
-    [name]: {
+    [label]: {
+      label,
       inStock
     }
   }
 
   await FOOD_REF.update(payload)
-  payload.name = name
 
-  return payload
+  return payload[label]
 }
 
 
