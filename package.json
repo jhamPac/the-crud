@@ -33,6 +33,7 @@
     "eslint": "^5.11.1",
     "eslint-plugin-react": "^7.11.1",
     "graphql": "^14.0.2",
+    "graphql-tag": "^2.10.0",
     "import-glob-loader": "^1.1.0",
     "materialize-css": "^1.0.0",
     "node-sass": "^4.11.0",
