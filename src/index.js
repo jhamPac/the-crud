@@ -9,11 +9,13 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
+import FoodSupply from './comps/FoodSupply'
+
 import './scss/main'
 
 function Application() {
   return(
-    <div>The Crud</div>
+    <FoodSupply />
   )
 }
 
