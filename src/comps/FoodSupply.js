@@ -13,27 +13,27 @@ const GET_FOOD_SUPPLY = gql`
 export default function FoodSupply() {
   return(
     <Query query={GET_FOOD_SUPPLY}>
-    {
-      ({ loading, error, data }) => {
-        if (loading) return "Loading...";
-        if (error) return `Error! ${error.message}`;
+      {
+        ({ loading, error, data }) => {
+          if (loading) return "Loading...";
+          if (error) return `Error! ${error.message}`;
 
-        return (
-          <ul>
-            {
-              data.getFoodSupply.map((food, index) => {
-                return(
-                  <li key={index}>
-                    <p>{food.label}</p>
-                    <span>{food.inStock}</span>
-                  </li>
-                )
-              })
-            }
-          </ul>
-        );
+          return (
+            <ul>
+              {
+                data.getFoodSupply.map((food, index) => {
+                  return(
+                    <li key={index}>
+                      <p>{food.label}</p>
+                      <span>{food.inStock}</span>
+                    </li>
+                  )
+                })
+              }
+            </ul>
+          );
+        }
       }
-    }
-  </Query>
+    </Query>
   )
 }
