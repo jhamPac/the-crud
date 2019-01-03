@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/jhamPac/the-crud#readme",
   "devDependencies": {
+    "apollo-boost": "^0.1.23",
     "autoprefixer": "^9.4.3",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
@@ -31,11 +32,13 @@
     "cssnano": "^4.1.8",
     "eslint": "^5.11.1",
     "eslint-plugin-react": "^7.11.1",
+    "graphql": "^14.0.2",
     "import-glob-loader": "^1.1.0",
     "materialize-css": "^1.0.0",
     "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
+    "react-apollo": "^2.3.3",
     "react-dom": "^16.7.0",
     "rimraf": "^2.6.2"
   },
