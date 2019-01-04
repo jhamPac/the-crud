@@ -3,8 +3,7 @@ require('dotenv').config()
 import React    from 'react'
 import ReactDOM from 'react-dom'
 
-// Firebase setup
-
+import { firebaseRef } from './firebase'
 
 // Apollo setup
 import { ApolloProvider } from 'react-apollo'
