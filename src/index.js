@@ -1,6 +1,12 @@
+require('dotenv').config()
+
 import React    from 'react'
 import ReactDOM from 'react-dom'
 
+// Firebase setup
+
+
+// Apollo setup
 import { ApolloProvider } from 'react-apollo'
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost'
 
