@@ -4,8 +4,6 @@ dotenv.config()
 import React    from 'react'
 import ReactDOM from 'react-dom'
 
-import { firebaseRef } from './firebase'
-
 // Apollo setup
 import { ApolloProvider } from 'react-apollo'
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost'
@@ -15,13 +13,14 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
+import AuthPage   from './comps/AuthPage'
 import FoodSupply from './comps/FoodSupply'
 
 import './scss/main'
 
 function Application() {
   return(
-    <FoodSupply />
+    <AuthPage />
   )
 }
 
