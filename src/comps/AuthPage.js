@@ -26,11 +26,6 @@ export default function AuthPage(props) {
                 password: ''
             }}
             validationSchema={formSchema}
-            validate={(values) => {
-               let errors = {};
-
-               return errors;
-            }}
             onSubmit={handleSubmit}
             render={(formProps) => {
              return(
