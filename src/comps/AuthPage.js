@@ -1,7 +1,7 @@
 import React from 'react'
 import { firebaseRef } from '../firebase'
-import { Formik, FormikProps, Form, Field, ErrorMessage } from 'formik';
-import Yup form 'yup'
+import { Formik, FormikProps, Form, Field, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
 
 export default function AuthPage(props) {
 
@@ -10,6 +10,11 @@ export default function AuthPage(props) {
     setSubmitting(false)
     return
   }
+
+  const formSchema = Yup.object().shape({
+    email: Yup.string().email('Email not valid').required('Email is required'),
+    password: Yup.string().min(9, 'Password must be 9 characters or longer').required('Password is required')
+  })
 
   return (
     <div className="container">
@@ -20,10 +25,9 @@ export default function AuthPage(props) {
                 email: '',
                 password: ''
             }}
+            validationSchema={formSchema}
             validate={(values) => {
                let errors = {};
-
-               if (!values.email) errors.email = "Email is required"
 
                return errors;
             }}
@@ -40,6 +44,7 @@ export default function AuthPage(props) {
                   <div>
                     <label htmlFor="password">Password</label>
                     <Field type="password" id="password" name="password"/>
+                    <ErrorMessage name="password" />
                   </div>
 
                   <button className="btn btn-blue" type="submit" disabled={formProps.isSubmitting}>Submit Form</button>
