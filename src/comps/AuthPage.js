@@ -33,13 +33,13 @@ export default function AuthPage(props) {
                   <div className="input-group">
                     <label htmlFor="email">Email</label>
                     <Field type="text" id="email" name="email"/>
-                    <ErrorMessage name="email" />
+                    <ErrorMessage component="span" name="email" />
                   </div>
 
                   <div className="input-group">
                     <label htmlFor="password">Password</label>
                     <Field type="password" id="password" name="password"/>
-                    <ErrorMessage name="password" />
+                    <ErrorMessage component="span" name="password" />
                   </div>
 
                   <div className="button-group">

@@ -3,9 +3,13 @@
 
   .input-group {
     margin-bottom: 50px;
+
+    span {
+      @extend .red-text;
+    }
   }
 
   .button-group {
-    
+    margin-top: 25px;
   }
 }
