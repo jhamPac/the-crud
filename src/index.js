@@ -21,7 +21,9 @@ import './scss/main'
 
 function Application() {
   return(
-    <AuthPage />
+    <div id="UI">
+      <AuthPage />
+    </div>
   )
 }
 

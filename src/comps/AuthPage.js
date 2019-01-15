@@ -17,7 +17,7 @@ export default function AuthPage(props) {
   })
 
   return (
-    <div className="container">
+    <div id="auth-view" className="container">
       <section className="row">
         <div className="col s12">
           <Formik
@@ -30,19 +30,21 @@ export default function AuthPage(props) {
             render={(formProps) => {
              return(
                 <Form>
-                  <div>
+                  <div className="input-group">
                     <label htmlFor="email">Email</label>
                     <Field type="text" id="email" name="email"/>
                     <ErrorMessage name="email" />
                   </div>
 
-                  <div>
+                  <div className="input-group">
                     <label htmlFor="password">Password</label>
                     <Field type="password" id="password" name="password"/>
                     <ErrorMessage name="password" />
                   </div>
 
-                  <button className="btn btn-blue" type="submit" disabled={formProps.isSubmitting}>Submit Form</button>
+                  <div className="button-group">
+                    <button className="btn btn-blue" type="submit" disabled={formProps.isSubmitting}>Submit Form</button>
+                  </div>
                 </Form>
              )
            }}

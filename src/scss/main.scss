@@ -6,10 +6,11 @@
 }
 
 body {
-  background-color: yellow;
   font-size: 16px;
 
   #mount-point {
-
+    #UI {
+      @import './comps/auth-view'
+    }
   }
 }
