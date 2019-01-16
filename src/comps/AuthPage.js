@@ -1,13 +1,22 @@
 import React from 'react'
 import { firebaseRef } from '../firebase'
 import { Formik, FormikProps, Form, Field, ErrorMessage } from 'formik'
+import M        from 'materialize-css'
 import * as Yup from 'yup'
 
 export default function AuthPage(props) {
 
-  function handleSubmit(values, { props, setSubmitting }) {
-    console.log(values)
+  function async handleSubmit(values, { props, setSubmitting }) {
+    setSubmitting(true)
+
+    await firebaseRef.auth().createUserWithEmailAndPassword(values.email, values.password).catch(function(error) {
+      M.toast({html: 'There was an error, please try again.'})
+      throw new Error('Something happend')
+    })
+
+    M.toast({html: 'Account successfully created!'})
     setSubmitting(false)
+
     return
   }
 
