@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 
 export default function AuthPage(props) {
 
-  function async handleSubmit(values, { props, setSubmitting }) {
+  async function handleSubmit(values, { props, setSubmitting }) {
     setSubmitting(true)
 
     await firebaseRef.auth().createUserWithEmailAndPassword(values.email, values.password).catch(function(error) {
@@ -52,7 +52,7 @@ export default function AuthPage(props) {
                   </div>
 
                   <div className="button-group">
-                    <button className="btn btn-blue" type="submit" disabled={formProps.isSubmitting}>Submit Form</button>
+                    <button className="btn blue" type="submit" disabled={formProps.isSubmitting}>Submit Form</button>
                   </div>
                 </Form>
              )
