@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 
 export default function AuthPage(props) {
 
-  async function handleSubmit(values, { props, setSubmitting }) {
+  async function handleSubmit(values, { setSubmitting }) {
     setSubmitting(true)
 
     await firebaseRef.auth().createUserWithEmailAndPassword(values.email, values.password).catch(function(error) {
@@ -15,6 +15,9 @@ export default function AuthPage(props) {
     })
 
     M.toast({html: 'Account successfully created!'})
+    setTimeout(() => {
+      props.history.push('/dashboard')
+    }, 2000)
     setSubmitting(false)
 
     return

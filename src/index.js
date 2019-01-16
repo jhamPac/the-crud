@@ -6,6 +6,7 @@ import 'babel-polyfill'
 import React    from 'react'
 import ReactDOM from 'react-dom'
 import M        from 'materialize-css'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 
 
 // initialize materialize
@@ -22,6 +23,7 @@ const client = new ApolloClient({
 
 // comps
 import AuthPage   from './comps/AuthPage'
+import Dashboard  from './comps/Dashboard'
 import FoodSupply from './comps/FoodSupply'
 
 // scss
@@ -30,7 +32,12 @@ import './scss/main'
 function Application() {
   return(
     <div id="UI">
-      <AuthPage />
+      <Router>
+        <Switch>
+          <Route exact path="/dashboard" component={ Dashboard }></Route>
+          <Route exact path="/" component={ AuthPage }></Route>
+        </Switch>
+      </Router>
     </div>
   )
 }
