@@ -1,9 +1,15 @@
+// setup environment variables
 import dotenv from 'dotenv'
 dotenv.config()
 
 import 'babel-polyfill'
 import React    from 'react'
 import ReactDOM from 'react-dom'
+import M        from 'materialize-css'
+
+
+// initialize materialize
+M.AutoInit()
 
 // Apollo setup
 import { ApolloProvider } from 'react-apollo'
@@ -14,9 +20,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
+// comps
 import AuthPage   from './comps/AuthPage'
 import FoodSupply from './comps/FoodSupply'
 
+// scss
 import './scss/main'
 
 function Application() {
