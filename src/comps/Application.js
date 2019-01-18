@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import { firebaseRef } from '../firebase'
 
 // comps
@@ -16,15 +16,19 @@ export default class Application extends Component {
 
     this.fireBaseListener = firebaseRef.auth().onAuthStateChanged(user => {
       (user) ? this.setState({ userLoggedIn: true }) : this.setState({ userLoggedIn: false })
-    });
+    })
   }
 
   componentWillUnmount() {
     this.fireBaseListener = undefined
   }
 
-  userAuthRouteGuard() {
+  userAuthRouteGuard(routerProps, Component) {
     const { userLoggedIn } = this.state
+
+    return (userLoggedIn)
+      ? <Component { ...routerProps }/>
+      : <Redirect to="/" />
   }
 
   render() {
@@ -32,9 +36,9 @@ export default class Application extends Component {
       <div id="UI">
         <Router>
           <Switch>
-            <Route path="/food-supply" component={ FoodSupply }></Route>
-            <Route path="/dashboard"   component={ Dashboard }></Route>
-            <Route exact path="/"      component={ AuthPage }></Route>
+            <Route path="/food-supply" render={ (routerProps) => this.userAuthRouteGuard(routerProps, FoodSupply) } />
+            <Route path="/dashboard"   render={ (routerProps) => this.userAuthRouteGuard(routerProps, Dashboard) } />
+            <Route exact path="/"      component={ AuthPage } />
           </Switch>
         </Router>
       </div>
