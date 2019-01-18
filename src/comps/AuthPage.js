@@ -11,6 +11,7 @@ export default function AuthPage(props) {
 
     await firebaseRef.auth().createUserWithEmailAndPassword(values.email, values.password).catch(function(error) {
       M.toast({html: 'There was an error, please try again.'})
+      setSubmitting(false)
       throw new Error('Something happend')
     })
 
@@ -55,7 +56,7 @@ export default function AuthPage(props) {
                   </div>
 
                   <div className="button-group">
-                    <button className="btn blue" type="submit" disabled={formProps.isSubmitting}>Submit Form</button>
+                    <button className="btn blue" type="submit" disabled={formProps.isSubmitting}>Submit</button>
                   </div>
                 </Form>
              )
