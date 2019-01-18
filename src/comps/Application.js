@@ -15,13 +15,16 @@ export default class Application extends Component {
     }
 
     this.fireBaseListener = firebaseRef.auth().onAuthStateChanged(user => {
-      console.log(user, 'The user')
       (user) ? this.setState({ userLoggedIn: true }) : this.setState({ userLoggedIn: false })
     });
   }
 
   componentWillUnmount() {
     this.fireBaseListener = undefined
+  }
+
+  userAuthRouteGuard() {
+    const { userLoggedIn } = this.state
   }
 
   render() {

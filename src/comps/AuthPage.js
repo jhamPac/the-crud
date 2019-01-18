@@ -9,7 +9,7 @@ export default function AuthPage(props) {
   async function handleSubmit(values, { setSubmitting }) {
     setSubmitting(true)
 
-    await firebaseRef.auth().createUserWithEmailAndPassword(values.email, values.password).catch(function(error) {
+    await firebaseRef.auth().signInWithEmailAndPassword(values.email, values.password).catch(function(error) {
       M.toast({html: 'There was an error, please try again.'})
       setSubmitting(false)
       throw new Error('Something happend')
