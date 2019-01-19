@@ -1,6 +1,6 @@
 import React from 'react'
 import { firebaseRef } from '../firebase'
-import { Formik, FormikProps, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import M        from 'materialize-css'
 import * as Yup from 'yup'
 
