@@ -3,7 +3,7 @@ import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import { firebaseRef } from '../firebase'
 
 // comps
-import AuthPage   from './AuthPage'
+import AuthView   from './Auth/AuthView'
 import Dashboard  from './Dashboard'
 import FoodSupply from './FoodSupply'
 
@@ -38,7 +38,7 @@ export default class Application extends Component {
           <Switch>
             <Route path="/food-supply" render={ (routerProps) => this.userAuthRouteGuard(routerProps, FoodSupply) } />
             <Route path="/dashboard"   render={ (routerProps) => this.userAuthRouteGuard(routerProps, Dashboard) } />
-            <Route exact path="/"      component={ AuthPage } />
+            <Route exact path="/"      component={ AuthView } />
           </Switch>
         </Router>
       </div>
