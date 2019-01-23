@@ -50,7 +50,10 @@
     "yup": "^0.26.6"
   },
   "alias": {
-    "root": "/"
+    "root": "./src"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "root": "^3.2.0"
+  }
 }

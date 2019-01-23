@@ -55,7 +55,7 @@ export default function LoginForm() {
                   </div>
 
                   <div className="button-group">
-                    <button className="btn blue" type="submit" disabled={formProps.isSubmitting}>Submit</button>
+                    <button className="btn blue" type="submit" disabled={formProps.isSubmitting}>Login</button>
                   </div>
                 </Form>
              )
