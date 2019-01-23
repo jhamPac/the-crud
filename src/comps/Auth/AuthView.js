@@ -9,8 +9,9 @@ export default function AuthView(props) {
       <section className="login">
         <LoginForm />
       </section>
+       <div class="divider"></div>
       <section className="sign-up">
-
+        <SignUpForm />
       </section>
     </div>
   )
