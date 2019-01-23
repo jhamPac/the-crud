@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import M        from 'materialize-css'
 import * as Yup from 'yup'
 
-export default function LoginForm() {
+export default function LoginForm(props) {
 
   async function handleSubmit(values, { setSubmitting }) {
     setSubmitting(true)
@@ -12,6 +12,7 @@ export default function LoginForm() {
     await firebaseRef.auth().signInWithEmailAndPassword(values.email, values.password).catch(function(error) {
       M.toast({html: `${error.message}`})
       setSubmitting(false)
+      throw new Error('login unsuccessful')
     })
 
     M.toast({html: 'Login successful!'})

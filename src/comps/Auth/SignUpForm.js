@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import M        from 'materialize-css'
 import * as Yup from 'yup'
 
-export default function LoginForm() {
+export default function SignUpForm(props) {
 
   async function handleSubmit(values, { setSubmitting }) {
     setSubmitting(true)
