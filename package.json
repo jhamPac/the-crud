@@ -49,5 +49,8 @@
     "rimraf": "^2.6.2",
     "yup": "^0.26.6"
   },
+  "alias": {
+    "root": "/"
+  },
   "private": true
 }
