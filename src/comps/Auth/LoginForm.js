@@ -9,7 +9,8 @@ export default function LoginForm(props) {
   async function handleSubmit(values, { setSubmitting }) {
     setSubmitting(true)
 
-    await firebaseRef.auth().signInWithEmailAndPassword(values.email, values.password).catch(function(error) {
+    await firebaseRef.auth().signInWithEmailAndPassword(values.loginEmail, values.loginPassword)
+    .catch(function(error) {
       M.toast({html: `${error.message}`})
       setSubmitting(false)
       throw new Error('login unsuccessful')
@@ -25,8 +26,8 @@ export default function LoginForm(props) {
   }
 
   const formSchema = Yup.object().shape({
-    email: Yup.string().email('Email not valid').required('Email is required'),
-    password: Yup.string().required('Password is required')
+    loginEmail: Yup.string().email('Email not valid').required('Email is required'),
+    loginPassword: Yup.string().required('Password is required')
   })
 
   return (
@@ -35,8 +36,8 @@ export default function LoginForm(props) {
         <div className="col s12">
           <Formik
             initialValues={{
-                email: '',
-                password: ''
+                loginEmail: '',
+                loginPassword: ''
             }}
             validationSchema={formSchema}
             onSubmit={handleSubmit}
@@ -44,15 +45,15 @@ export default function LoginForm(props) {
              return(
                 <Form>
                   <div className="input-group">
-                    <label htmlFor="email">Email</label>
-                    <Field type="text" id="email" name="email"/>
-                    <ErrorMessage component="span" name="email" />
+                    <label htmlFor="loginEmail">Email</label>
+                    <Field type="text" id="loginEmail" name="loginEmail"/>
+                    <ErrorMessage component="span" name="loginEmail" />
                   </div>
 
                   <div className="input-group">
-                    <label htmlFor="password">Password</label>
-                    <Field type="password" id="password" name="password"/>
-                    <ErrorMessage component="span" name="password" />
+                    <label htmlFor="loginPassword">Password</label>
+                    <Field type="password" id="loginPassword" name="loginPassword"/>
+                    <ErrorMessage component="span" name="loginPassword" />
                   </div>
 
                   <div className="button-group">
