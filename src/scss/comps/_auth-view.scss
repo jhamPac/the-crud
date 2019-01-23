@@ -1,15 +1,16 @@
 #auth-view {
-  padding-top: 50px;
 
-  .input-group {
-    margin-bottom: 50px;
+  .auth-form {
+    .input-group {
+      margin-bottom: 50px;
 
-    span {
-      @extend .red-text;
+      span {
+        @extend .red-text;
+      }
     }
-  }
 
-  .button-group {
-    margin-top: 25px;
+    .button-group {
+      margin-top: 25px;
+    }
   }
 }
