@@ -13,7 +13,7 @@ function getCredentials() {
 }
 
 admin.initializeApp(getCredentials())
-const fireStore = admin.firestore()
+const fireStore  = admin.firestore()
 const FOOD_REF   = fireStore.collection('provisions').doc('food')
 
 async function foodSupply() {
