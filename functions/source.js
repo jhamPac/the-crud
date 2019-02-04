@@ -9,13 +9,14 @@ const gqlServer = new ApolloServer({
   playground: true
 })
 
-// export Firebase function handler
+// graphql endpoint
 export const api = functions.https.onRequest(gqlServer.createHandler({
   cors: {
     origin: '*'
   }
 }))
 
+// firestore onWrite trigger
 export const vulcan = functions.firestore.document('provisions/food').onWrite((change, context) => {
   console.log(change.before.data())
   console.log(change.after.data())
