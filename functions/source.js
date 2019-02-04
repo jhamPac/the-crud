@@ -15,3 +15,7 @@ export const api = functions.https.onRequest(gqlServer.createHandler({
     origin: '*'
   }
 }))
+
+export const vulcan = functions.firestore.document('provisions/food').onWrite((change, context) => {
+  console.log(change)
+})
