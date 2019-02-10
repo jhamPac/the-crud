@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
-import { firebaseRef } from '../firebase'
+import useAuth from '../hooks/useAuth'
 
 // comps
 import AuthView   from './Auth/AuthView'
@@ -8,13 +8,7 @@ import Dashboard  from './Dashboard'
 import FoodSupply from './FoodSupply'
 
 export default function Application() {
-  const [ userLoggedIn, setLoginState ] = useState(false)
-
-  useEffect(() => {
-    firebaseRef.auth().onAuthStateChanged(user => {
-      (user) ? setLoginState(true) : setLoginState(false)
-    })
-  })
+  const userLoggedIn = useAuth()
 
   function userAuthRouteGuard(routerProps, Component) {
     return (userLoggedIn)
