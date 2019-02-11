@@ -64,7 +64,8 @@
     "yup": "^0.26.6"
   },
   "alias": {
-    "root": "./src"
+    "root": "./src",
+    "hooks": "./src/hooks"
   },
   "private": true,
   "dependencies": {

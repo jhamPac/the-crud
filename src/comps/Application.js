@@ -1,6 +1,6 @@
 import React from 'react'
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
-import useAuth from '../hooks/useAuth'
+import useAuth from 'hooks/useAuth'
 
 // comps
 import AuthView   from './Auth/AuthView'
