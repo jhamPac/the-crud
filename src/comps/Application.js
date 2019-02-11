@@ -8,7 +8,7 @@ import Dashboard  from './Dashboard'
 import FoodSupply from './FoodSupply'
 
 export default function Application() {
-  const userLoggedIn = useAuth()
+  const userLoggedIn = useAuth({ defaultValue: false })
 
   function userAuthRouteGuard(routerProps, Component) {
     return (userLoggedIn)
