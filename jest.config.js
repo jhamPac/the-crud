@@ -2,7 +2,7 @@ module.exports = {
   "modulePaths": ["<rootDir>/src/"],
   "moduleFileExtensions": ["js"],
   "moduleNameMapper": {
-    "^hooks$": "<rootDir>/src/hooks/",
-    "^root$" : "<rootDir>/src/"
+    "^hooks(.*)$": "<rootDir>/src/hooks$1",
+    "^root(.*)$" : "<rootDir>/src$1",
   }
 }
