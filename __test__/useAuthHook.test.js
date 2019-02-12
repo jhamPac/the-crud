@@ -1,5 +1,5 @@
 import {testHook, act, cleanup} from 'react-testing-library'
-import useAuth from '../src/hooks/useAuth'
+import useAuth from 'hooks/useAuth'
 
 afterEach(cleanup)
 
