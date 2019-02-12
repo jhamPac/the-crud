@@ -8,7 +8,7 @@
     "bablify": "parcel build ./functions/source.js --out-dir ./functions --out-file index.js --target node",
     "build": "npm run clean && npm run bablify && parcel build ./src/index.html",
     "start": "parcel ./src/index.html --port 9500",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
