@@ -6,7 +6,9 @@ afterEach(cleanup)
 
 describe('Application component', () => {
   it('should render', () => {
-    const { container } = render(<Application />)
+    const { container, getByText } = render(<Application />)
+    const loginButton   = getByText(/Lo/i)
     expect(container.firstChild.id).toBe('UI')
+    expect(loginButton).toBeTruthy()
   })
 })
