@@ -7,7 +7,8 @@ afterEach(cleanup)
 describe('Application component', () => {
   it('should render', () => {
     const { container, getByText } = render(<Application />)
-    const loginButton   = getByText(/Login/i)
+    const loginButton = getByText(/Login/i)
+
     expect(container.firstChild.id).toBe('UI')
     expect(loginButton).toBeInTheDocument()
   })
