@@ -7,6 +7,6 @@ afterEach(cleanup)
 describe('Application component', () => {
   it('should render', () => {
     const { container } = render(<Application />)
-    console.log(container.firstChild)
+    expect(container.firstChild.id).toBe('UI')
   })
 })
