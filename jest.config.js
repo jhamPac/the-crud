@@ -5,5 +5,6 @@ module.exports = {
     "^hooks(.*)$": "<rootDir>/src/hooks$1",
     "^root(.*)$" : "<rootDir>/src$1",
   },
-  "setupFiles": ['dotenv/config']
+  "setupFiles": ["dotenv/config"],
+  "setupFilesAfterEnv": ["<rootDir>/setupTests.js"]
 }
