@@ -11,8 +11,8 @@ import M        from 'materialize-css'
 M.AutoInit()
 
 // Apollo setup
-import { ApolloProvider } from 'react-apollo'
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost'
+import {ApolloProvider} from 'react-apollo'
+import {ApolloClient, HttpLink, InMemoryCache} from 'apollo-boost'
 
 const client = new ApolloClient({
   link: new HttpLink({uri: 'https://us-central1-blackjynxy.cloudfunctions.net/api'}),
