@@ -1,12 +1,11 @@
-import React, { Fragment } from 'react'
-import { firebaseRef }     from 'root/firebase'
-import M     from 'materialize-css'
+import React, {Fragment} from 'react'
+import {firebaseRef}     from 'root/firebase'
+import M from 'materialize-css'
 
 import LoginForm  from './LoginForm'
 import SignUpForm from './SignUpForm'
 
 export default function AuthView(props) {
-
   async function handleSignOut() {
     await firebaseRef.auth().signOut().catch(error => {
       M.toast({html: `${error.message}`})
@@ -24,11 +23,11 @@ export default function AuthView(props) {
 
           : <Fragment>
               <section className="login">
-                <LoginForm { ...props }/>
+                <LoginForm {...props}/>
               </section>
                <div className="divider"></div>
               <section className="sign-up">
-                <SignUpForm { ...props }/>
+                <SignUpForm {...props}/>
               </section>
             </Fragment>
       }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { firebaseRef } from '../firebase'
+import {firebaseRef} from '../firebase'
 
 export default function Dashboard() {
   return (
