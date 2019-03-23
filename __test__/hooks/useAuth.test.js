@@ -1,4 +1,4 @@
-import { act, cleanup, testHook } from 'react-testing-library'
+import {act, cleanup, testHook} from 'react-testing-library'
 import useAuth from 'hooks/useAuth'
 
 afterEach(cleanup)
@@ -8,7 +8,7 @@ describe('useAuth hook', () => {
     let userLoggedIn
 
     testHook(() => {
-      userLoggedIn = useAuth({ defaultValue: false })
+      userLoggedIn = useAuth({defaultValue: false})
     })
 
     expect(userLoggedIn).toBe(false)
