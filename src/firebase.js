@@ -15,4 +15,4 @@ const config = {
 
 firebaseRef.initializeApp(config)
 
-export {firebaseRef}
+export { firebaseRef }
