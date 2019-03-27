@@ -1,11 +1,11 @@
 import React from 'react'
-import {firebaseRef} from 'root/firebase'
-import {Formik, Form, Field, ErrorMessage} from 'formik'
+import { firebaseRef } from 'root/firebase'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import M        from 'materialize-css'
 import * as Yup from 'yup'
 
 export default function SignUpForm(props) {
-  async function handleSubmit(values, {setSubmitting}) {
+  async function handleSubmit(values, { setSubmitting }) {
     setSubmitting(true)
 
     await firebaseRef.auth().createUserWithEmailAndPassword(values.email, values.password).catch(function(error) {

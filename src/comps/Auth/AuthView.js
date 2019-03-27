@@ -1,5 +1,5 @@
-import React, {Fragment} from 'react'
-import {firebaseRef}     from 'root/firebase'
+import React, { Fragment } from 'react'
+import { firebaseRef }     from 'root/firebase'
 import M from 'materialize-css'
 
 import LoginForm  from './LoginForm'

@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react'
-import {firebaseRef} from 'root/firebase'
+import { useState, useEffect } from 'react'
+import { firebaseRef } from 'root/firebase'
 
 export default function useAuth({defaultValue}) {
   const [userLoggedIn, setLoginState] = useState(defaultValue)
