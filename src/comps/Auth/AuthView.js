@@ -1,36 +1,43 @@
-import React, { Fragment } from 'react'
-import { firebaseRef }     from 'root/firebase'
+import React from 'react'
+import { firebaseRef } from 'root/firebase'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import M from 'materialize-css'
-
-import LoginForm  from './LoginForm'
-import SignUpForm from './SignUpForm'
+import * as Yup from 'yup'
 
 export default function AuthView(props) {
-  async function handleSignOut() {
-    await firebaseRef.auth().signOut().catch(error => {
-      M.toast({html: `${error.message}`})
-      throw new Error('No, never log out')
-    })
-
-    M.toast({html: 'See you later'})
-  }
+  const formSchema = Yup.object().shape({
+    email: Yup.string().email('Email not valid').required('Email is required'),
+  })
 
   return (
     <div id="auth-view" className="container">
-      {
-        (firebaseRef.auth().currentUser)
-          ? <button className="btn red" onClick={handleSignOut}>Peace Out ✌🏾</button>
+      <section className="row">
+        <div className="col s12">
+          <h2>Sign up with a Magic🧙🏿‍♀️ Link</h2>
+          <Formik
+            initialValues={{
+                email: ''
+            }}
+            validationSchema={formSchema}
+            onSubmit={() => console.log('yeah')}
+            render={(formProps) => {
+             return(
+                <Form>
+                  <div className="input-group">
+                    <label htmlFor="email">Email</label>
+                    <Field type="text" id="email" name="email"/>
+                    <ErrorMessage className="red-text" component="span" name="email" />
+                  </div>
 
-          : <Fragment>
-              <section className="login">
-                <LoginForm {...props}/>
-              </section>
-               <div className="divider"></div>
-              <section className="sign-up">
-                <SignUpForm {...props}/>
-              </section>
-            </Fragment>
-      }
+                  <div className="button-group">
+                    <button className="btn green" type="submit" disabled={formProps.isSubmitting}>Sign me up!</button>
+                  </div>
+                </Form>
+             )
+           }}
+          />
+        </div>
+      </section>
     </div>
   )
 }

@@ -1,24 +1,7 @@
 #auth-view {
   padding-top: 50px;
 
-  .divider {
-    @extend .grey;
-    height: 25px;
-    margin-top: 75px;
-    margin-bottom: 75px;
-  }
-
-  .auth-form {
-    .input-group {
-      margin-bottom: 50px;
-
-      span {
-        @extend .red-text;
-      }
-    }
-
-    .button-group {
-      margin-top: 25px;
-    }
+  .input-group {
+    margin-bottom: 25px;
   }
 }
